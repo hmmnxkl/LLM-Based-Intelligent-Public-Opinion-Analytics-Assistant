@@ -1,0 +1,62 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  hotsearch-app:
+    build:
+      context: ../fsdownload
+      dockerfile: Dockerfile
+    container_name: hotsearch-analysis-app-new
+    ports:
+      - "8080:5000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./vector_db:/app/vector_db
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_DATABASE=hotsearch_db
+      - MYSQL_PORT=3306
+      - MODEL_API_URL=http://172.17.0.1:5001/generate
+      - SPIDER_INTERVAL=60
+      - REQUEST_TIMEOUT=10
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - hotsearch-network
+    init: false
+
+  mysql:
+    image: mysql:8.0
+    container_name: hotsearch-mysql-new
+    environment:
+      - MYSQL_ROOT_PASSWORD=654321
+      - MYSQL_DATABASE=hotsearch_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    restart: unless-stopped
+    networks:
+      - hotsearch-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p654321"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    init: false
+
+volumes:
+  mysql_data:
+
+networks:
+  hotsearch-network:
+    driver: bridge

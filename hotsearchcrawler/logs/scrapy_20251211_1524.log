@@ -1,0 +1,395 @@
+2025-12-11 15:24:07 [scrapy.utils.log] INFO: Scrapy 2.11.0 started (bot: hotsearchcrawler)
+2025-12-11 15:24:07 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.3, cssselect 1.3.0, parsel 1.10.0, w3lib 2.3.1, Twisted 22.10.0, Python 3.12.11 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 12:58:53) [MSC v.1929 64 bit (AMD64)], pyOpenSSL 25.1.0 (OpenSSL 3.5.1 1 Jul 2025), cryptography 45.0.5, Platform Windows-11-10.0.26200-SP0
+2025-12-11 15:24:08 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-12-11 15:24:08 [py.warnings] WARNING: D:\llx-env\Lib\site-packages\scrapy\utils\request.py:254: ScrapyDeprecationWarning: '2.6' is a deprecated value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting.
+
+It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
+
+See the documentation of the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting for information on how to handle this deprecation.
+  return cls(crawler)
+
+2025-12-11 15:24:08 [scrapy.extensions.telnet] INFO: Telnet Password: cf26efe0629ed07b
+2025-12-11 15:24:08 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2025-12-11 15:24:08 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10,
+ 'AUTOTHROTTLE_START_DELAY': 1,
+ 'BOT_NAME': 'hotsearchcrawler',
+ 'CONCURRENT_REQUESTS': 4,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'DOWNLOAD_DELAY': 2,
+ 'LOG_FILE': 'logs\\scrapy_20251211_1524.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'hotsearchcrawler.spiders',
+ 'RETRY_TIMES': 3,
+ 'SPIDER_MODULES': ['hotsearchcrawler.spiders']}
+2025-12-11 15:24:09 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.NetEaseCookieMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.ErrorHandleMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-12-11 15:24:09 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-12-11 15:24:09 [scrapy.middleware] INFO: Enabled item pipelines:
+['hotsearchcrawler.pipelines.MySQLPipeline']
+2025-12-11 15:24:09 [scrapy.core.engine] INFO: Spider opened
+2025-12-11 15:24:09 [hotsearchcrawler.pipelines] INFO: ✅ 数据库连接成功
+2025-12-11 15:24:09 [hotsearchcrawler.pipelines] INFO: ✅ 表 hot_articles 已创建或已存在
+2025-12-11 15:24:09 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-12-11 15:24:09 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-12-11 15:24:09 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 1 名热词: 华为重夺中国手机市场份额第一
+2025-12-11 15:24:12 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%8D%8E%E4%B8%BA%E9%87%8D%E5%A4%BA%E4%B8%AD%E5%9B%BD%E6%89%8B%E6%9C%BA%E5%B8%82%E5%9C%BA%E4%BB%BD%E9%A2%9D%E7%AC%AC%E4%B8%80
+2025-12-11 15:24:14 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:14 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:24:19 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGM6JDK05118A8G.html
+2025-12-11 15:24:19 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '华为重夺中国手机市场份额第一', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGM6JDK05118A8G.html', 'crawl_time': None, 'rank': 1}
+2025-12-11 15:24:19 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 1 的新记录: '华为重夺中国手机市场份额第一'
+2025-12-11 15:24:19 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 2 名热词: 超10万柬边境居民逃离家园
+2025-12-11 15:24:20 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E8%B6%8510%E4%B8%87%E6%9F%AC%E8%BE%B9%E5%A2%83%E5%B1%85%E6%B0%91%E9%80%83%E7%A6%BB%E5%AE%B6%E5%9B%AD
+2025-12-11 15:24:22 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:22 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:24:27 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGDOOMT705346RC6.html
+2025-12-11 15:24:27 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '超10万柬边境居民逃离家园', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGDOOMT705346RC6.html', 'crawl_time': None, 'rank': 2}
+2025-12-11 15:24:27 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 2 的新记录: '超10万柬边境居民逃离家园'
+2025-12-11 15:24:27 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 3 名热词: “九天”无人机成功首飞
+2025-12-11 15:24:27 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E2%80%9C%E4%B9%9D%E5%A4%A9%E2%80%9D%E6%97%A0%E4%BA%BA%E6%9C%BA%E6%88%90%E5%8A%9F%E9%A6%96%E9%A3%9E
+2025-12-11 15:24:29 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:29 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:24:34 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG6UNGM0512D3VJ.html
+2025-12-11 15:24:34 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '“九天”无人机成功首飞', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG6UNGM0512D3VJ.html', 'crawl_time': None, 'rank': 3}
+2025-12-11 15:24:34 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 3 的新记录: '“九天”无人机成功首飞'
+2025-12-11 15:24:34 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 4 名热词: 男子AI生成车展低俗视频造谣被拘
+2025-12-11 15:24:34 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%94%B7%E5%AD%90AI%E7%94%9F%E6%88%90%E8%BD%A6%E5%B1%95%E4%BD%8E%E4%BF%97%E8%A7%86%E9%A2%91%E9%80%A0%E8%B0%A3%E8%A2%AB%E6%8B%98
+2025-12-11 15:24:36 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:36 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:24:41 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGEDV6VS05129QAF.html
+2025-12-11 15:24:41 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '男子AI生成车展低俗视频造谣被拘', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGEDV6VS05129QAF.html', 'crawl_time': None, 'rank': 4}
+2025-12-11 15:24:41 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 4 的新记录: '男子AI生成车展低俗视频造谣被拘'
+2025-12-11 15:24:41 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 5 名热词: “无名”男子医院躺7年半 警方介入
+2025-12-11 15:24:41 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E2%80%9C%E6%97%A0%E5%90%8D%E2%80%9D%E7%94%B7%E5%AD%90%E5%8C%BB%E9%99%A2%E8%BA%BA7%E5%B9%B4%E5%8D%8A%20%E8%AD%A6%E6%96%B9%E4%BB%8B%E5%85%A5
+2025-12-11 15:24:43 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:43 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:24:48 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG2AV0M0552RUAA.html
+2025-12-11 15:24:48 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '“无名”男子医院躺7年半 警方介入', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG2AV0M0552RUAA.html', 'crawl_time': None, 'rank': 5}
+2025-12-11 15:24:48 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 5 的新记录: '“无名”男子医院躺7年半 警方介入'
+2025-12-11 15:24:48 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 6 名热词: 数十人在老宅挖银元？文旅部门回应
+2025-12-11 15:24:49 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%95%B0%E5%8D%81%E4%BA%BA%E5%9C%A8%E8%80%81%E5%AE%85%E6%8C%96%E9%93%B6%E5%85%83%EF%BC%9F%E6%96%87%E6%97%85%E9%83%A8%E9%97%A8%E5%9B%9E%E5%BA%94
+2025-12-11 15:24:51 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:51 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:24:56 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGBPTND0550HXM1.html
+2025-12-11 15:24:56 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '数十人在老宅挖银元？文旅部门回应', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGBPTND0550HXM1.html', 'crawl_time': None, 'rank': 6}
+2025-12-11 15:24:56 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 6 的新记录: '数十人在老宅挖银元？文旅部门回应'
+2025-12-11 15:24:56 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 7 名热词: 哈尔滨冰雪大世界主塔已封顶
+2025-12-11 15:24:57 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%93%88%E5%B0%94%E6%BB%A8%E5%86%B0%E9%9B%AA%E5%A4%A7%E4%B8%96%E7%95%8C%E4%B8%BB%E5%A1%94%E5%B7%B2%E5%B0%81%E9%A1%B6
+2025-12-11 15:24:59 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:24:59 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:04 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG4JK6O0530QRMB.html
+2025-12-11 15:25:04 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '哈尔滨冰雪大世界主塔已封顶', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG4JK6O0530QRMB.html', 'crawl_time': None, 'rank': 7}
+2025-12-11 15:25:04 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 7 的新记录: '哈尔滨冰雪大世界主塔已封顶'
+2025-12-11 15:25:04 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 8 名热词: 5000万粉丝女网红涉嫌逃税仍直播
+2025-12-11 15:25:08 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=5000%E4%B8%87%E7%B2%89%E4%B8%9D%E5%A5%B3%E7%BD%91%E7%BA%A2%E6%B6%89%E5%AB%8C%E9%80%83%E7%A8%8E%E4%BB%8D%E7%9B%B4%E6%92%AD
+2025-12-11 15:25:10 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:10 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:15 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG9GCUO0514CFC7.html
+2025-12-11 15:25:15 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '5000万粉丝女网红涉嫌逃税仍直播', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG9GCUO0514CFC7.html', 'crawl_time': None, 'rank': 8}
+2025-12-11 15:25:15 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 8 的新记录: '5000万粉丝女网红涉嫌逃税仍直播'
+2025-12-11 15:25:15 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 1 pages/min), scraped 8 items (at 8 items/min)
+2025-12-11 15:25:15 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 9 名热词: 北冥有鱼竟然是真的
+2025-12-11 15:25:16 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%8C%97%E5%86%A5%E6%9C%89%E9%B1%BC%E7%AB%9F%E7%84%B6%E6%98%AF%E7%9C%9F%E7%9A%84
+2025-12-11 15:25:18 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:18 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:23 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGEABSL0552M0MJ.html
+2025-12-11 15:25:23 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '北冥有鱼竟然是真的', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGEABSL0552M0MJ.html', 'crawl_time': None, 'rank': 9}
+2025-12-11 15:25:23 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 9 的新记录: '北冥有鱼竟然是真的'
+2025-12-11 15:25:23 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 10 名热词: 四川雅安现不明巨响 应急部门回应
+2025-12-11 15:25:23 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%9B%9B%E5%B7%9D%E9%9B%85%E5%AE%89%E7%8E%B0%E4%B8%8D%E6%98%8E%E5%B7%A8%E5%93%8D%20%E5%BA%94%E6%80%A5%E9%83%A8%E9%97%A8%E5%9B%9E%E5%BA%94
+2025-12-11 15:25:25 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:25 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:30 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGI8V5S0534A4SC.html
+2025-12-11 15:25:30 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '四川雅安现不明巨响 应急部门回应', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGI8V5S0534A4SC.html', 'crawl_time': None, 'rank': 10}
+2025-12-11 15:25:30 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 10 的新记录: '四川雅安现不明巨响 应急部门回应'
+2025-12-11 15:25:30 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 11 名热词: 帅化民批高市又菜又爱玩
+2025-12-11 15:25:31 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%B8%85%E5%8C%96%E6%B0%91%E6%89%B9%E9%AB%98%E5%B8%82%E5%8F%88%E8%8F%9C%E5%8F%88%E7%88%B1%E7%8E%A9
+2025-12-11 15:25:33 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:33 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:38 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGJI3D40514EGPO.html
+2025-12-11 15:25:38 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '帅化民批高市又菜又爱玩', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGJI3D40514EGPO.html', 'crawl_time': None, 'rank': 11}
+2025-12-11 15:25:38 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 11 的新记录: '帅化民批高市又菜又爱玩'
+2025-12-11 15:25:38 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 12 名热词: “油老虎”袁光宇被提起公诉
+2025-12-11 15:25:38 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E2%80%9C%E6%B2%B9%E8%80%81%E8%99%8E%E2%80%9D%E8%A2%81%E5%85%89%E5%AE%87%E8%A2%AB%E6%8F%90%E8%B5%B7%E5%85%AC%E8%AF%89
+2025-12-11 15:25:40 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:40 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:45 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGC8GAU051492T3.html
+2025-12-11 15:25:45 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '“油老虎”袁光宇被提起公诉', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGC8GAU051492T3.html', 'crawl_time': None, 'rank': 12}
+2025-12-11 15:25:45 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 12 的新记录: '“油老虎”袁光宇被提起公诉'
+2025-12-11 15:25:45 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 13 名热词: 林诗栋4比0梁靖崑晋级8强
+2025-12-11 15:25:46 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%9E%97%E8%AF%97%E6%A0%8B4%E6%AF%940%E6%A2%81%E9%9D%96%E5%B4%91%E6%99%8B%E7%BA%A78%E5%BC%BA
+2025-12-11 15:25:48 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:48 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:25:53 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VVFILE7M1.html
+2025-12-11 15:25:53 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '林诗栋4比0梁靖崑晋级8强', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VVFILE7M1.html', 'crawl_time': None, 'rank': 13}
+2025-12-11 15:25:53 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 13 的新记录: '林诗栋4比0梁靖崑晋级8强'
+2025-12-11 15:25:53 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 14 名热词: 蜜雪冰城开始卖早餐了
+2025-12-11 15:25:54 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E8%9C%9C%E9%9B%AA%E5%86%B0%E5%9F%8E%E5%BC%80%E5%A7%8B%E5%8D%96%E6%97%A9%E9%A4%90%E4%BA%86
+2025-12-11 15:25:56 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:25:56 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:01 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGBU7C6D051492LM.html
+2025-12-11 15:26:01 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '蜜雪冰城开始卖早餐了', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGBU7C6D051492LM.html', 'crawl_time': None, 'rank': 14}
+2025-12-11 15:26:01 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 14 的新记录: '蜜雪冰城开始卖早餐了'
+2025-12-11 15:26:01 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 15 名热词: 美联储年底降息传递两个关键信息
+2025-12-11 15:26:01 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%BE%8E%E8%81%94%E5%82%A8%E5%B9%B4%E5%BA%95%E9%99%8D%E6%81%AF%E4%BC%A0%E9%80%92%E4%B8%A4%E4%B8%AA%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF
+2025-12-11 15:26:03 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:03 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:08 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGFUCKDT055040N3.html
+2025-12-11 15:26:08 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '美联储年底降息传递两个关键信息', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGFUCKDT055040N3.html', 'crawl_time': None, 'rank': 15}
+2025-12-11 15:26:08 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 15 的新记录: '美联储年底降息传递两个关键信息'
+2025-12-11 15:26:08 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 16 名热词: 再次提醒：中国公民近期避免前往日本
+2025-12-11 15:26:09 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%86%8D%E6%AC%A1%E6%8F%90%E9%86%92%EF%BC%9A%E4%B8%AD%E5%9B%BD%E5%85%AC%E6%B0%91%E8%BF%91%E6%9C%9F%E9%81%BF%E5%85%8D%E5%89%8D%E5%BE%80%E6%97%A5%E6%9C%AC
+2025-12-11 15:26:11 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:11 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:16 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/news/article/KGG7I67J000189PS.html
+2025-12-11 15:26:16 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '再次提醒：中国公民近期避免前往日本', 'author': '网易新闻', 'url': 'https://m.163.com/news/article/KGG7I67J000189PS.html', 'crawl_time': None, 'rank': 16}
+2025-12-11 15:26:16 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 16 的新记录: '再次提醒：中国公民近期避免前往日本'
+2025-12-11 15:26:16 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 16 items (at 8 items/min)
+2025-12-11 15:26:16 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 17 名热词: 刘强东砸35亿港元在香港买楼
+2025-12-11 15:26:16 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%88%98%E5%BC%BA%E4%B8%9C%E7%A0%B835%E4%BA%BF%E6%B8%AF%E5%85%83%E5%9C%A8%E9%A6%99%E6%B8%AF%E4%B9%B0%E6%A5%BC
+2025-12-11 15:26:19 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:19 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:24 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGH6RN105568W0A.html
+2025-12-11 15:26:24 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '刘强东砸35亿港元在香港买楼', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGH6RN105568W0A.html', 'crawl_time': None, 'rank': 17}
+2025-12-11 15:26:24 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 17 的新记录: '刘强东砸35亿港元在香港买楼'
+2025-12-11 15:26:24 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 18 名热词: 男子伙同19岁女友更衣室偷拍被刑拘
+2025-12-11 15:26:25 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%94%B7%E5%AD%90%E4%BC%99%E5%90%8C19%E5%B2%81%E5%A5%B3%E5%8F%8B%E6%9B%B4%E8%A1%A3%E5%AE%A4%E5%81%B7%E6%8B%8D%E8%A2%AB%E5%88%91%E6%8B%98
+2025-12-11 15:26:27 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:27 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:32 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGBO94D1051492LM.html
+2025-12-11 15:26:32 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '男子伙同19岁女友更衣室偷拍被刑拘', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGBO94D1051492LM.html', 'crawl_time': None, 'rank': 18}
+2025-12-11 15:26:32 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 18 的新记录: '男子伙同19岁女友更衣室偷拍被刑拘'
+2025-12-11 15:26:32 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 19 名热词: 九寨沟景区回应男子随意扔玉米棒
+2025-12-11 15:26:34 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E4%B9%9D%E5%AF%A8%E6%B2%9F%E6%99%AF%E5%8C%BA%E5%9B%9E%E5%BA%94%E7%94%B7%E5%AD%90%E9%9A%8F%E6%84%8F%E6%89%94%E7%8E%89%E7%B1%B3%E6%A3%92
+2025-12-11 15:26:36 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:36 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:41 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VHFHB4E45.html
+2025-12-11 15:26:41 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '九寨沟景区回应男子随意扔玉米棒', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VHFHB4E45.html', 'crawl_time': None, 'rank': 19}
+2025-12-11 15:26:41 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 19 的新记录: '九寨沟景区回应男子随意扔玉米棒'
+2025-12-11 15:26:41 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 20 名热词: 广州一学校为全红婵立雕像？校方回应
+2025-12-11 15:26:42 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%B9%BF%E5%B7%9E%E4%B8%80%E5%AD%A6%E6%A0%A1%E4%B8%BA%E5%85%A8%E7%BA%A2%E5%A9%B5%E7%AB%8B%E9%9B%95%E5%83%8F%EF%BC%9F%E6%A0%A1%E6%96%B9%E5%9B%9E%E5%BA%94
+2025-12-11 15:26:44 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:44 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:48 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGNBLA805568W0A.html
+2025-12-11 15:26:48 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '广州一学校为全红婵立雕像？校方回应', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGNBLA805568W0A.html', 'crawl_time': None, 'rank': 20}
+2025-12-11 15:26:48 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 20 的新记录: '广州一学校为全红婵立雕像？校方回应'
+2025-12-11 15:26:48 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 21 名热词: 王楚钦说1-3落后时都想拎包回去了
+2025-12-11 15:26:49 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%8E%8B%E6%A5%9A%E9%92%A6%E8%AF%B41-3%E8%90%BD%E5%90%8E%E6%97%B6%E9%83%BD%E6%83%B3%E6%8B%8E%E5%8C%85%E5%9B%9E%E5%8E%BB%E4%BA%86
+2025-12-11 15:26:51 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:51 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:26:57 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG9A9RN0549BAP0.html
+2025-12-11 15:26:57 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '王楚钦说1-3落后时都想拎包回去了', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG9A9RN0549BAP0.html', 'crawl_time': None, 'rank': 21}
+2025-12-11 15:26:57 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 21 的新记录: '王楚钦说1-3落后时都想拎包回去了'
+2025-12-11 15:26:57 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 22 名热词: 水银体温计为何“退出历史舞台”
+2025-12-11 15:26:57 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%B0%B4%E9%93%B6%E4%BD%93%E6%B8%A9%E8%AE%A1%E4%B8%BA%E4%BD%95%E2%80%9C%E9%80%80%E5%87%BA%E5%8E%86%E5%8F%B2%E8%88%9E%E5%8F%B0%E2%80%9D
+2025-12-11 15:26:59 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:26:59 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:05 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGCG6I2A0514R9P4.html
+2025-12-11 15:27:05 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '水银体温计为何“退出历史舞台”', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGCG6I2A0514R9P4.html', 'crawl_time': None, 'rank': 22}
+2025-12-11 15:27:05 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 22 的新记录: '水银体温计为何“退出历史舞台”'
+2025-12-11 15:27:05 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 23 名热词: 抓紧抓好就业这个“最大的民生”
+2025-12-11 15:27:05 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%8A%93%E7%B4%A7%E6%8A%93%E5%A5%BD%E5%B0%B1%E4%B8%9A%E8%BF%99%E4%B8%AA%E2%80%9C%E6%9C%80%E5%A4%A7%E7%9A%84%E6%B0%91%E7%94%9F%E2%80%9D
+2025-12-11 15:27:07 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:07 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:12 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG4KCJ30552QJ47.html
+2025-12-11 15:27:12 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '抓紧抓好就业这个“最大的民生”', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG4KCJ30552QJ47.html', 'crawl_time': None, 'rank': 23}
+2025-12-11 15:27:12 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 23 的新记录: '抓紧抓好就业这个“最大的民生”'
+2025-12-11 15:27:12 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 23 items (at 7 items/min)
+2025-12-11 15:27:12 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 24 名热词: 涉案9.7亿！中菲合作遣返红通人员
+2025-12-11 15:27:13 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%B6%89%E6%A1%889.7%E4%BA%BF%EF%BC%81%E4%B8%AD%E8%8F%B2%E5%90%88%E4%BD%9C%E9%81%A3%E8%BF%94%E7%BA%A2%E9%80%9A%E4%BA%BA%E5%91%98
+2025-12-11 15:27:15 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:15 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:20 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGBE54B0514EA02.html
+2025-12-11 15:27:20 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '涉案9.7亿！中菲合作遣返红通人员', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGBE54B0514EA02.html', 'crawl_time': None, 'rank': 24}
+2025-12-11 15:27:20 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 24 的新记录: '涉案9.7亿！中菲合作遣返红通人员'
+2025-12-11 15:27:20 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 25 名热词: 【践行新发展理念 中国经济行稳致远】书写温暖的民生答卷
+2025-12-11 15:27:20 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E3%80%90%E8%B7%B5%E8%A1%8C%E6%96%B0%E5%8F%91%E5%B1%95%E7%90%86%E5%BF%B5%20%E4%B8%AD%E5%9B%BD%E7%BB%8F%E6%B5%8E%E8%A1%8C%E7%A8%B3%E8%87%B4%E8%BF%9C%E3%80%91%E4%B9%A6%E5%86%99%E6%B8%A9%E6%9A%96%E7%9A%84%E6%B0%91%E7%94%9F%E7%AD%94%E5%8D%B7
+2025-12-11 15:27:22 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:22 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:27 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGEUNBVK0514R9L4.html
+2025-12-11 15:27:27 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '【践行新发展理念 中国经济行稳致远】书写温暖的民生答卷', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGEUNBVK0514R9L4.html', 'crawl_time': None, 'rank': 25}
+2025-12-11 15:27:27 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 25 的新记录: '【践行新发展理念 中国经济行稳致远】书写温暖的民生答卷'
+2025-12-11 15:27:27 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 26 名热词: 雷霆狂赢49分淘汰太阳 晋级半决赛
+2025-12-11 15:27:28 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E9%9B%B7%E9%9C%86%E7%8B%82%E8%B5%A249%E5%88%86%E6%B7%98%E6%B1%B0%E5%A4%AA%E9%98%B3%20%E6%99%8B%E7%BA%A7%E5%8D%8A%E5%86%B3%E8%B5%9B
+2025-12-11 15:27:30 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:30 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:35 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGBUJ3H05299U9F.html
+2025-12-11 15:27:35 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '雷霆狂赢49分淘汰太阳 晋级半决赛', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGBUJ3H05299U9F.html', 'crawl_time': None, 'rank': 26}
+2025-12-11 15:27:35 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 26 的新记录: '雷霆狂赢49分淘汰太阳 晋级半决赛'
+2025-12-11 15:27:35 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 27 名热词: 林钟勋/申裕斌3-0松岛辉空/张本美和
+2025-12-11 15:27:35 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%9E%97%E9%92%9F%E5%8B%8B/%E7%94%B3%E8%A3%95%E6%96%8C3-0%E6%9D%BE%E5%B2%9B%E8%BE%89%E7%A9%BA/%E5%BC%A0%E6%9C%AC%E7%BE%8E%E5%92%8C
+2025-12-11 15:27:37 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:37 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:43 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGDUK2H305530YNY.html
+2025-12-11 15:27:43 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '林钟勋/申裕斌3-0松岛辉空/张本美和', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGDUK2H305530YNY.html', 'crawl_time': None, 'rank': 27}
+2025-12-11 15:27:43 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 27 的新记录: '林钟勋/申裕斌3-0松岛辉空/张本美和'
+2025-12-11 15:27:43 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 28 名热词: 湖人负马刺 东契奇空砍35分
+2025-12-11 15:27:44 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%B9%96%E4%BA%BA%E8%B4%9F%E9%A9%AC%E5%88%BA%20%E4%B8%9C%E5%A5%91%E5%A5%87%E7%A9%BA%E7%A0%8D35%E5%88%86
+2025-12-11 15:27:46 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:46 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:50 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGJ4VB00529TPTB.html
+2025-12-11 15:27:50 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '湖人负马刺 东契奇空砍35分', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGJ4VB00529TPTB.html', 'crawl_time': None, 'rank': 28}
+2025-12-11 15:27:50 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 28 的新记录: '湖人负马刺 东契奇空砍35分'
+2025-12-11 15:27:50 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 29 名热词: 维修成本翻倍 新能源车为何修不起
+2025-12-11 15:27:51 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%BB%B4%E4%BF%AE%E6%88%90%E6%9C%AC%E7%BF%BB%E5%80%8D%20%E6%96%B0%E8%83%BD%E6%BA%90%E8%BD%A6%E4%B8%BA%E4%BD%95%E4%BF%AE%E4%B8%8D%E8%B5%B7
+2025-12-11 15:27:53 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:27:53 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:27:58 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGG4IQ550512D3VJ.html
+2025-12-11 15:27:58 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '维修成本翻倍 新能源车为何修不起', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGG4IQ550512D3VJ.html', 'crawl_time': None, 'rank': 29}
+2025-12-11 15:27:58 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 29 的新记录: '维修成本翻倍 新能源车为何修不起'
+2025-12-11 15:27:58 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 30 名热词: 日本一客机单发失效 紧急降落函馆机场
+2025-12-11 15:27:59 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%97%A5%E6%9C%AC%E4%B8%80%E5%AE%A2%E6%9C%BA%E5%8D%95%E5%8F%91%E5%A4%B1%E6%95%88%20%E7%B4%A7%E6%80%A5%E9%99%8D%E8%90%BD%E5%87%BD%E9%A6%86%E6%9C%BA%E5%9C%BA
+2025-12-11 15:28:01 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:01 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:06 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGJI9VM0530WJIN.html
+2025-12-11 15:28:06 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '日本一客机单发失效 紧急降落函馆机场', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGJI9VM0530WJIN.html', 'crawl_time': None, 'rank': 30}
+2025-12-11 15:28:06 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 30 的新记录: '日本一客机单发失效 紧急降落函馆机场'
+2025-12-11 15:28:06 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 31 名热词: “国产GPU第一股”市值超4000亿元
+2025-12-11 15:28:07 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E2%80%9C%E5%9B%BD%E4%BA%A7GPU%E7%AC%AC%E4%B8%80%E8%82%A1%E2%80%9D%E5%B8%82%E5%80%BC%E8%B6%854000%E4%BA%BF%E5%85%83
+2025-12-11 15:28:09 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:09 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:14 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGASA3J0512B07B.html
+2025-12-11 15:28:14 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '“国产GPU第一股”市值超4000亿元', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGASA3J0512B07B.html', 'crawl_time': None, 'rank': 31}
+2025-12-11 15:28:14 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 31 的新记录: '“国产GPU第一股”市值超4000亿元'
+2025-12-11 15:28:14 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 31 items (at 8 items/min)
+2025-12-11 15:28:14 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 32 名热词: 柬军发射制导火箭弹摧毁泰军边境哨所
+2025-12-11 15:28:16 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%9F%AC%E5%86%9B%E5%8F%91%E5%B0%84%E5%88%B6%E5%AF%BC%E7%81%AB%E7%AE%AD%E5%BC%B9%E6%91%A7%E6%AF%81%E6%B3%B0%E5%86%9B%E8%BE%B9%E5%A2%83%E5%93%A8%E6%89%80
+2025-12-11 15:28:18 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:18 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:23 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VKFIJAB8E.html
+2025-12-11 15:28:23 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '柬军发射制导火箭弹摧毁泰军边境哨所', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VKFIJAB8E.html', 'crawl_time': None, 'rank': 32}
+2025-12-11 15:28:23 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 32 的新记录: '柬军发射制导火箭弹摧毁泰军边境哨所'
+2025-12-11 15:28:23 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 33 名热词: 小伙骑行撞上黄麂 断了两根骨头
+2025-12-11 15:28:24 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%B0%8F%E4%BC%99%E9%AA%91%E8%A1%8C%E6%92%9E%E4%B8%8A%E9%BB%84%E9%BA%82%20%E6%96%AD%E4%BA%86%E4%B8%A4%E6%A0%B9%E9%AA%A8%E5%A4%B4
+2025-12-11 15:28:26 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:26 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:30 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VIFIPV9S8.html
+2025-12-11 15:28:30 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '小伙骑行撞上黄麂 断了两根骨头', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VIFIPV9S8.html', 'crawl_time': None, 'rank': 33}
+2025-12-11 15:28:30 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 33 的新记录: '小伙骑行撞上黄麂 断了两根骨头'
+2025-12-11 15:28:30 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 34 名热词: 片仔癀从1600元一粒降到几百元
+2025-12-11 15:28:32 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%89%87%E4%BB%94%E7%99%80%E4%BB%8E1600%E5%85%83%E4%B8%80%E7%B2%92%E9%99%8D%E5%88%B0%E5%87%A0%E7%99%BE%E5%85%83
+2025-12-11 15:28:34 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:34 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:39 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGCJLNC40512B07B.html
+2025-12-11 15:28:39 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '片仔癀从1600元一粒降到几百元', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGCJLNC40512B07B.html', 'crawl_time': None, 'rank': 34}
+2025-12-11 15:28:39 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 34 的新记录: '片仔癀从1600元一粒降到几百元'
+2025-12-11 15:28:39 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 35 名热词: 人民日报：个别地方重“上”轻“下”
+2025-12-11 15:28:40 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E4%BA%BA%E6%B0%91%E6%97%A5%E6%8A%A5%EF%BC%9A%E4%B8%AA%E5%88%AB%E5%9C%B0%E6%96%B9%E9%87%8D%E2%80%9C%E4%B8%8A%E2%80%9D%E8%BD%BB%E2%80%9C%E4%B8%8B%E2%80%9D
+2025-12-11 15:28:42 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:42 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:46 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGC8FSH0530M570.html
+2025-12-11 15:28:46 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '人民日报：个别地方重“上”轻“下”', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGC8FSH0530M570.html', 'crawl_time': None, 'rank': 35}
+2025-12-11 15:28:46 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 35 的新记录: '人民日报：个别地方重“上”轻“下”'
+2025-12-11 15:28:46 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 36 名热词: 一粒米盖住6个字 药品说明书该改了
+2025-12-11 15:28:47 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E4%B8%80%E7%B2%92%E7%B1%B3%E7%9B%96%E4%BD%8F6%E4%B8%AA%E5%AD%97%20%E8%8D%AF%E5%93%81%E8%AF%B4%E6%98%8E%E4%B9%A6%E8%AF%A5%E6%94%B9%E4%BA%86
+2025-12-11 15:28:49 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:49 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:28:54 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGIRPND0550B6IS.html
+2025-12-11 15:28:54 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '一粒米盖住6个字 药品说明书该改了', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGIRPND0550B6IS.html', 'crawl_time': None, 'rank': 36}
+2025-12-11 15:28:54 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 36 的新记录: '一粒米盖住6个字 药品说明书该改了'
+2025-12-11 15:28:54 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 37 名热词: 日本学者：高市早苗涉台言论非常危险
+2025-12-11 15:28:55 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E6%97%A5%E6%9C%AC%E5%AD%A6%E8%80%85%EF%BC%9A%E9%AB%98%E5%B8%82%E6%97%A9%E8%8B%97%E6%B6%89%E5%8F%B0%E8%A8%80%E8%AE%BA%E9%9D%9E%E5%B8%B8%E5%8D%B1%E9%99%A9
+2025-12-11 15:28:57 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:28:57 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:02 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGE72FDR05568W0A.html
+2025-12-11 15:29:02 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '日本学者：高市早苗涉台言论非常危险', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGE72FDR05568W0A.html', 'crawl_time': None, 'rank': 37}
+2025-12-11 15:29:02 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 37 的新记录: '日本学者：高市早苗涉台言论非常危险'
+2025-12-11 15:29:02 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 38 名热词: 联合国厕所不再提供擦手纸
+2025-12-11 15:29:03 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E8%81%94%E5%90%88%E5%9B%BD%E5%8E%95%E6%89%80%E4%B8%8D%E5%86%8D%E6%8F%90%E4%BE%9B%E6%93%A6%E6%89%8B%E7%BA%B8
+2025-12-11 15:29:05 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:05 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:10 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VXFIDNRK9.html
+2025-12-11 15:29:10 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '联合国厕所不再提供擦手纸', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VXFIDNRK9.html', 'crawl_time': None, 'rank': 38}
+2025-12-11 15:29:10 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 38 的新记录: '联合国厕所不再提供擦手纸'
+2025-12-11 15:29:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 38 items (at 7 items/min)
+2025-12-11 15:29:10 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 39 名热词: 甲状腺癌为什么越来越常见
+2025-12-11 15:29:10 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E7%94%B2%E7%8A%B6%E8%85%BA%E7%99%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%B8%B8%E8%A7%81
+2025-12-11 15:29:12 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:12 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:17 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGCA0HQ60512D3VJ.html
+2025-12-11 15:29:17 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '甲状腺癌为什么越来越常见', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGCA0HQ60512D3VJ.html', 'crawl_time': None, 'rank': 39}
+2025-12-11 15:29:17 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 39 的新记录: '甲状腺癌为什么越来越常见'
+2025-12-11 15:29:17 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 40 名热词: 邱贻可：孙颖莎卫冕世乒赛很不容易
+2025-12-11 15:29:19 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E9%82%B1%E8%B4%BB%E5%8F%AF%EF%BC%9A%E5%AD%99%E9%A2%96%E8%8E%8E%E5%8D%AB%E5%86%95%E4%B8%96%E4%B9%92%E8%B5%9B%E5%BE%88%E4%B8%8D%E5%AE%B9%E6%98%93
+2025-12-11 15:29:21 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:21 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:26 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGDDI3940553AOVQ.html
+2025-12-11 15:29:26 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '邱贻可：孙颖莎卫冕世乒赛很不容易', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGDDI3940553AOVQ.html', 'crawl_time': None, 'rank': 40}
+2025-12-11 15:29:26 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 40 的新记录: '邱贻可：孙颖莎卫冕世乒赛很不容易'
+2025-12-11 15:29:26 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 41 名热词: “红学”专家否认《红楼梦》悼明
+2025-12-11 15:29:27 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E2%80%9C%E7%BA%A2%E5%AD%A6%E2%80%9D%E4%B8%93%E5%AE%B6%E5%90%A6%E8%AE%A4%E3%80%8A%E7%BA%A2%E6%A5%BC%E6%A2%A6%E3%80%8B%E6%82%BC%E6%98%8E
+2025-12-11 15:29:29 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:29 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:34 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KEEIO86A05149D15.html
+2025-12-11 15:29:34 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '“红学”专家否认《红楼梦》悼明', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KEEIO86A05149D15.html', 'crawl_time': None, 'rank': 41}
+2025-12-11 15:29:34 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 41 的新记录: '“红学”专家否认《红楼梦》悼明'
+2025-12-11 15:29:34 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 42 名热词: 41岁詹姆斯上演隔人暴扣
+2025-12-11 15:29:35 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=41%E5%B2%81%E8%A9%B9%E5%A7%86%E6%96%AF%E4%B8%8A%E6%BC%94%E9%9A%94%E4%BA%BA%E6%9A%B4%E6%89%A3
+2025-12-11 15:29:37 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:37 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:42 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGJE5MG05560PER.html
+2025-12-11 15:29:42 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '41岁詹姆斯上演隔人暴扣', 'author': '网易新闻', 'url': 'https://m.163.com/dy/article/KGGJE5MG05560PER.html', 'crawl_time': None, 'rank': 42}
+2025-12-11 15:29:42 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 42 的新记录: '41岁詹姆斯上演隔人暴扣'
+2025-12-11 15:29:42 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 43 名热词: 什么是影响明年股市的关键
+2025-12-11 15:29:42 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E4%BB%80%E4%B9%88%E6%98%AF%E5%BD%B1%E5%93%8D%E6%98%8E%E5%B9%B4%E8%82%A1%E5%B8%82%E7%9A%84%E5%85%B3%E9%94%AE
+2025-12-11 15:29:44 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:44 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:49 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VWFHVLVFV.html
+2025-12-11 15:29:49 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '什么是影响明年股市的关键', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VWFHVLVFV.html', 'crawl_time': None, 'rank': 43}
+2025-12-11 15:29:49 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 43 的新记录: '什么是影响明年股市的关键'
+2025-12-11 15:29:49 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 44 名热词: 学员称练车太冷进大厅取暖遭驱赶
+2025-12-11 15:29:50 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%AD%A6%E5%91%98%E7%A7%B0%E7%BB%83%E8%BD%A6%E5%A4%AA%E5%86%B7%E8%BF%9B%E5%A4%A7%E5%8E%85%E5%8F%96%E6%9A%96%E9%81%AD%E9%A9%B1%E8%B5%B6
+2025-12-11 15:29:52 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:29:52 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:29:57 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/v/video/VCFH3U6MH.html
+2025-12-11 15:29:57 [wangyi_hotsearch_hot] INFO: ✅ 成功生成 Item: {'platform_id': 6, 'title': '学员称练车太冷进大厅取暖遭驱赶', 'author': '网易新闻', 'url': 'https://m.163.com/v/video/VCFH3U6MH.html', 'crawl_time': None, 'rank': 44}
+2025-12-11 15:29:57 [hotsearchcrawler.pipelines] INFO: ✅ 已插入平台ID 6 排名 44 的新记录: '学员称练车太冷进大厅取暖遭驱赶'
+2025-12-11 15:29:57 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-12-11 15:29:57 [hotsearchcrawler.pipelines] INFO: 🔌 数据库连接已关闭
+2025-12-11 15:29:59 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 391,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 2938,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 350.566806,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 12, 11, 7, 29, 59, 734220, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 8292,
+ 'httpcompression/response_count': 1,
+ 'item_scraped_count': 44,
+ 'log_count/INFO': 326,
+ 'log_count/WARNING': 1,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2025, 12, 11, 7, 24, 9, 167414, tzinfo=datetime.timezone.utc)}
+2025-12-11 15:29:59 [scrapy.core.engine] INFO: Spider closed (finished)

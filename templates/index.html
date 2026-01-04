@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舆情分析系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 10px 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            height: 60px;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            min-width: 0; /* 防止flex溢出 */
+        }
+
+        .history-panel {
+            width: 250px;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            padding: 15px;
+            flex-shrink: 0;
+        }
+
+        .history-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            font-size: 1.1em;
+        }
+
+        .history-list {
+            list-style: none;
+        }
+
+        .history-item {
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .history-item:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0; /* 防止flex溢出 */
+            overflow: hidden; /* 防止内容溢出 */
+        }
+
+        .control-panel {
+            width: 280px;
+            background: #f8f9fa;
+            border-left: 1px solid #e0e0e0;
+            overflow-y: auto;
+            padding: 15px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden; /* 防止水平滚动 */
+            background: #fafafa;
+            min-width: 0; /* 防止flex溢出 */
+        }
+
+        .message {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 85%;
+            word-wrap: break-word;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            /* 修复长文本问题 */
+            word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            min-width: 0; /* 防止flex元素溢出 */
+        }
+
+        .user-message {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 2px;
+        }
+
+        .bot-message {
+            background: white;
+            border: 1px solid #e0e0e0;
+            margin-right: auto;
+            border-bottom-left-radius: 2px;
+        }
+
+        .welcome-message {
+            background: white;
+            border: 1px solid #e0e0e0;
+            margin: 0 auto 20px auto;
+            max-width: 90%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            word-break: break-word; /* 确保欢迎消息也能正确换行 */
+        }
+
+        .input-area {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .message-input:focus {
+            border-color: #007bff;
+        }
+
+        .send-btn {
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #0056b3;
+        }
+
+        .send-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots span {
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+
+        /* 链接样式 */
+        .news-link {
+            color: #007bff;
+            text-decoration: none;
+            border-bottom: 1px dotted #007bff;
+            transition: all 0.3s;
+            word-break: break-all; /* 长URL换行 */
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .news-link:hover {
+            color: #0056b3;
+            border-bottom: 1px solid #0056b3;
+        }
+
+        /* 控制按钮区域 */
+        .control-section {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .control-section h3 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-section h3::before {
+            content: "▶";
+            font-size: 0.8em;
+            color: #3498db;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            flex: 1;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 0.8em;
+        }
+
+        .control-btn:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .start-btn {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .start-btn:hover {
+            background: #218838;
+        }
+
+        .stop-btn {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .stop-btn:hover {
+            background: #c82333;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-running {
+            background: #28a745;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-stopped {
+            background: #dc3545;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* 快捷查询按钮区域 */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .quick-btn {
+            padding: 6px 8px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            font-size: 0.7em;
+        }
+
+        .quick-btn:hover {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        /* 推送任务样式 */
+        .push-tasks-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 8px;
+            background: #fafafa;
+        }
+
+        .push-task-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 6px;
+            font-size: 0.75em;
+        }
+
+        .push-task-delete {
+            margin-top: 4px;
+            padding: 2px 6px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.7em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .push-task-delete:hover {
+            background: #c82333;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .modal input, .modal select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .modal-btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #666;
+            font-size: 0.8em;
+            padding: 10px;
+        }
+
+        /* 历史记录删除按钮样式 */
+        .delete-history-btn {
+            background: #dc3545 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 3px !important;
+            padding: 2px 6px !important;
+            font-size: 0.7em !important;
+            cursor: pointer !important;
+            margin-left: 5px !important;
+        }
+
+        .delete-history-btn:hover {
+            background: #c82333 !important;
+        }
+
+        /* 删除所有按钮样式 */
+        .delete-all-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .delete-all-btn:hover {
+            background: #c82333;
+        }
+
+        .delete-all-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* 对于非常长的单词或URL进行特殊处理 */
+        .message pre,
+        .message code {
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /* 确保长数字和连续字符也能正常换行 */
+        .message {
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        /* 调整消息的最大宽度，防止在大屏幕上过大 */
+        @media (min-width: 1400px) {
+            .message {
+                max-width: 75%;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .message {
+                max-width: 70%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .control-panel {
+                width: 250px;
+            }
+            .history-panel {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .history-panel {
+                width: 100%;
+                max-height: 150px;
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            .control-panel {
+                width: 100%;
+                max-height: 300px;
+                border-left: none;
+                border-top: 1px solid #e0e0e0;
+                order: 3;
+            }
+            .chat-container {
+                order: 2;
+            }
+            .quick-actions {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            /* 在移动设备上进一步减小消息宽度 */
+            .message {
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>舆情分析系统</h1>
+        </div>
+
+        <div class="main-content">
+            <!-- 历史对话面板 -->
+            <div class="history-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin: 0;">历史对话</h3>
+                    <button class="delete-all-btn" onclick="deleteAllConversations()" id="deleteAllBtn">
+                        删除所有
+                    </button>
+                </div>
+                <ul class="history-list" id="historyList">
+                    <!-- 历史对话项将通过JS动态添加 -->
+                </ul>
+            </div>
+
+            <!-- 聊天区域 -->
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <strong>系统助手：</strong><br>
+                        欢迎使用舆情分析系统！我可以帮您查询各大平台热搜榜单、搜索特定主题、进行话题聚类分析、分析情感倾向等。
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="typingIndicator">
+                    <strong>系统助手：</strong> <span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>
+                </div>
+
+                <div class="input-area">
+                    <div class="input-group">
+                        <input type="text" class="message-input" id="messageInput" placeholder="输入您的问题..." onkeypress="handleKeyPress(event)">
+                        <button class="send-btn" onclick="sendMessage()" id="sendBtn">发送</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 控制面板（右侧） -->
+            <div class="control-panel">
+                <!-- 爬虫控制 -->
+                <div class="control-section">
+                    <h3>爬虫控制</h3>
+                    <div class="control-buttons">
+                        <button class="control-btn start-btn" onclick="startCrawler()" id="startCrawlerBtn">
+                            <span class="status-indicator status-stopped" id="crawlerStatus"></span>
+                            启动爬虫
+                        </button>
+                        <button class="control-btn stop-btn" onclick="stopCrawler()" id="stopCrawlerBtn" disabled>
+                            停止爬虫
+                        </button>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 0.75em; color: #666; text-align: center;" id="crawlerStatusText">状态: 未运行</div>
+                </div>
+
+                <!-- 平台热搜查询 -->
+                <div class="control-section">
+                    <h3>平台热搜查询</h3>
+                    <div class="quick-actions">
+                        <button class="quick-btn" onclick="directPlatformQuery('百度')">百度热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('抖音')">抖音热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('头条')">头条热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('网易')">网易热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('腾讯')">腾讯热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('知乎')">知乎热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('凤凰')">凤凰热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('360')">360热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('快手')">快手热搜</button>
+                        <!-- 新增的四个平台按钮 -->
+                        <button class="quick-btn" onclick="directPlatformQuery('微博')">微博热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('小红书')">小红书热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('搜狗')">搜狗热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('澎湃')">澎湃热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('B站')">B站热搜</button>
+                        <button class="quick-btn" onclick="directPlatformQuery('UC')">UC热搜</button>
+                    </div>
+                </div>
+
+                <!-- 热点定时推送 -->
+                <div class="control-section">
+                    <h3>热点定时推送</h3>
+                    <button class="control-btn" onclick="showPushTaskModal()" style="background: #ff6b6b; color: white; margin-bottom: 10px;">
+                        🚀 设置热点推送
+                    </button>
+
+                    <div id="pushTasksList" class="push-tasks-list">
+                        <!-- 推送任务列表将通过JS动态添加 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 推送任务模态框 -->
+    <div id="pushTaskModal" class="modal">
+        <div class="modal-content">
+            <h3>设置热点推送</h3>
+
+            <div>
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">推送类别:</label>
+                <input type="text" id="pushPrompt" placeholder="例如：科技新闻、财经动态、体育赛事...">
+            </div>
+
+            <div>
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">推送时间:</label>
+                <select id="pushTime">
+                    <option value="05:00">05:00</option>
+                    <option value="05:30">05:30</option>
+                    <option value="06:00">06:00</option>
+                    <option value="06:30">06:30</option>
+                    <option value="07:00">07:00</option>
+                    <option value="07:30">07:30</option>
+                    <option value="08:00">08:00</option>
+                    <option value="08:30">08:30</option>
+                    <option value="09:00" selected>09:00</option>
+                    <option value="09:30">09:30</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:30">10:30</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:30">11:30</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:30">14:30</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:30">15:30</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                    <option value="23:00">23:00</option>
+                    <option value="23:30">23:30</option>
+                    <option value="00:00">00:00</option>
+                </select>
+                <div style="font-size: 0.8em; color: #666; margin-top: 5px;">
+                    系统将在选定时间前10分钟自动启动分析任务
+                </div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-primary" onclick="createPushTask()">创建推送</button>
+                <button class="modal-btn modal-btn-secondary" onclick="hidePushTaskModal()">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isProcessing = false;
+        let messageCounter = 0;
+        let conversationHistory = [];
+        let currentConversationId = null;
+
+        // 初始化检查爬虫状态
+        checkCrawlerStatus();
+        loadHistory();
+        loadPushTasks();
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message || isProcessing) return;
+
+            const messageId = 'msg_' + messageCounter++;
+            addMessage('user', message, messageId);
+
+            // 清空输入框
+            input.value = '';
+
+            // 处理消息，在收到回复后保存完整对话
+            processMessage(message, messageId);
+        }
+
+        function directPlatformQuery(platformName) {
+            if (isProcessing) return;
+
+            const message = `查询${platformName}热搜`;
+            const messageId = 'msg_' + messageCounter++;
+
+            // 添加到聊天界面
+            addMessage('user', message, messageId);
+
+            // 显示正在输入指示器
+            showTypingIndicator();
+            isProcessing = true;
+            document.getElementById('sendBtn').disabled = true;
+
+            try {
+                // 直接调用后端的平台查询接口
+                fetch('/api/direct_platform_query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        platform_name: platformName,
+                        message: message
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const botMessageId = 'response_' + messageId;
+                        addMessage('bot', data.response, botMessageId);
+
+                        // 保存完整对话到历史记录
+                        addToHistory(message, data.response, data.conversation_id);
+                    } else {
+                        addMessage('bot', `错误: ${data.message}`, 'response_' + messageId);
+                    }
+                })
+                .catch(error => {
+                    addMessage('bot', `网络错误: ${error.message}`, 'response_' + messageId);
+                })
+                .finally(() => {
+                    hideTypingIndicator();
+                    isProcessing = false;
+                    document.getElementById('sendBtn').disabled = false;
+                });
+
+            } catch (error) {
+                addMessage('bot', `请求错误: ${error.message}`, 'response_' + messageId);
+                hideTypingIndicator();
+                isProcessing = false;
+                document.getElementById('sendBtn').disabled = false;
+            }
+        }
+
+        function quickAction(action) {
+            if (isProcessing) return;
+
+            // 检查是否是平台查询（用于其他非平台查询的快捷操作）
+            if (action.startsWith('查询')) {
+                // 这里可以保留原逻辑，或者调用 directPlatformQuery
+                // 暂时保持原逻辑，直接发送到聊天
+                document.getElementById('messageInput').value = action;
+                sendMessage();
+                return;
+            }
+
+            // 其他类型的快捷操作保持不变
+            document.getElementById('messageInput').value = action;
+            sendMessage();
+        }
+
+        function addMessage(sender, content, messageId) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.id = messageId;
+
+            const senderName = sender === 'user' ? '您' : '系统助手';
+
+            // 处理内容中的URL，使其可点击
+            const formattedContent = formatMessage(content);
+
+            messageDiv.innerHTML = `<strong>${senderName}：</strong><br>${formattedContent}`;
+
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function formatMessage(content) {
+            // 将URL转换为可点击链接，并添加换行处理
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            let formattedContent = content.replace(urlRegex, function(url) {
+                // 缩短显示的长URL
+                let displayUrl = url;
+                try {
+                    const urlObj = new URL(url);
+                    const path = urlObj.pathname;
+                    displayUrl = urlObj.hostname + (path.length > 20 ? path.substring(0, 20) + '...' : path);
+                } catch (e) {
+                    // 如果URL解析失败，直接截断显示
+                    if (url.length > 50) {
+                        displayUrl = url.substring(0, 50) + '...';
+                    }
+                }
+                return `<a href="${url}" class="news-link" target="_blank" title="${url}">${displayUrl}</a>`;
+            });
+
+            // 处理换行
+            formattedContent = formattedContent.replace(/\n/g, '<br>');
+
+            // 添加CSS类来确保长文本换行
+            formattedContent = `<div style="word-wrap: break-word; word-break: break-word; hyphens: auto; overflow-wrap: anywhere;">${formattedContent}</div>`;
+
+            return formattedContent;
+        }
+
+        function addToHistory(userMessage, botResponse, conversationId) {
+            if (!conversationId) {
+                conversationId = 'conv_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+
+            const conversationItem = {
+                id: conversationId,
+                user_message: userMessage,
+                bot_response: botResponse,
+                timestamp: new Date().toLocaleTimeString(),
+                fullTimestamp: new Date().toISOString(),
+                display_text: userMessage.length > 30 ? userMessage.substring(0, 30) + '...' : userMessage
+            };
+
+            // 添加到历史记录数组开头（最新的在前面）
+            conversationHistory.unshift(conversationItem);
+
+            // 更新历史记录显示
+            updateHistoryDisplay();
+
+            // 保存到后端
+            saveConversationToFile(userMessage, botResponse, conversationId);
+
+            return conversationId;
+        }
+
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+
+            if (conversationHistory.length === 0) {
+                historyList.innerHTML = '<div class="empty-state">暂无历史对话</div>';
+                return;
+            }
+
+            conversationHistory.forEach(conv => {
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                li.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div style="flex: 1; min-width: 0;">
+                            <div style="font-size: 0.9em; margin-bottom: 2px;">${conv.display_text}</div>
+                            <div style="font-size: 0.7em; color: #666;">${conv.timestamp}</div>
+                        </div>
+                        <button class="delete-history-btn" onclick="event.stopPropagation(); deleteConversation('${conv.id}')">
+                            删除
+                        </button>
+                    </div>
+                `;
+
+                li.title = `${conv.user_message}\n时间: ${conv.timestamp}`;
+                li.onclick = () => {
+                    loadConversation(conv.id);
+                };
+
+                historyList.appendChild(li);
+            });
+        }
+
+        async function saveConversationToFile(userMessage, botResponse, conversationId) {
+            try {
+                await fetch('/api/history/save_conversation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_message: userMessage,
+                        bot_response: botResponse,
+                        conversation_id: conversationId
+                    })
+                });
+            } catch (error) {
+                console.error('保存对话记录到文件失败:', error);
+            }
+        }
+
+        async function loadConversation(conversationId) {
+            try {
+                // 查找对应的对话记录
+                const conversation = conversationHistory.find(conv => conv.id === conversationId);
+                if (!conversation) {
+                    console.error('未找到对话记录:', conversationId);
+                    return;
+                }
+
+                // 清空当前聊天界面
+                const messagesContainer = document.getElementById('chatMessages');
+                messagesContainer.innerHTML = '<div class="welcome-message"><strong>系统助手：</strong><br>欢迎使用舆情分析系统！我可以帮您查询各大平台热搜榜单、搜索特定主题、进行话题聚类分析、分析情感倾向等。</div>';
+
+                // 添加历史对话到聊天界面
+                addMessage('user', conversation.user_message, `hist_${conversationId}_user`);
+                addMessage('bot', conversation.bot_response, `hist_${conversationId}_bot`);
+
+                // 设置当前对话ID
+                currentConversationId = conversationId;
+
+            } catch (error) {
+                console.error('加载对话失败:', error);
+                alert('加载历史对话失败');
+            }
+        }
+
+        async function deleteConversation(conversationId) {
+            if (!confirm('确定要删除这条历史记录吗？')) {
+                return;
+            }
+
+            try {
+                // 从后端删除
+                const response = await fetch(`/api/history/delete/${conversationId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    // 从前端删除
+                    conversationHistory = conversationHistory.filter(conv => conv.id !== conversationId);
+                    updateHistoryDisplay();
+
+                    // 如果删除的是当前显示的对话，清空聊天界面
+                    if (currentConversationId === conversationId) {
+                        const messagesContainer = document.getElementById('chatMessages');
+                        messagesContainer.innerHTML = '<div class="welcome-message"><strong>系统助手：</strong><br>欢迎使用舆情分析系统！我可以帮您查询各大平台热搜榜单、搜索特定主题、进行话题聚类分析、分析情感倾向等。</div>';
+                        currentConversationId = null;
+                    }
+                } else {
+                    alert('删除失败: ' + data.message);
+                }
+            } catch (error) {
+                console.error('删除对话记录失败:', error);
+                alert('删除失败: ' + error.message);
+            }
+        }
+
+        async function deleteAllConversations() {
+            if (!confirm('确定要删除所有历史对话记录吗？此操作不可恢复！')) {
+                return;
+            }
+
+            const deleteBtn = document.getElementById('deleteAllBtn');
+            const originalText = deleteBtn.textContent;
+            deleteBtn.textContent = '删除中...';
+            deleteBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/history/delete_all', {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    alert('所有历史对话记录已删除！');
+
+                    // 清空前端数据
+                    conversationHistory = [];
+                    updateHistoryDisplay();
+
+                    // 清空聊天界面
+                    const messagesContainer = document.getElementById('chatMessages');
+                    messagesContainer.innerHTML = '<div class="welcome-message"><strong>系统助手：</strong><br>欢迎使用舆情分析系统！我可以帮您查询各大平台热搜榜单、搜索特定主题、进行话题聚类分析、分析情感倾向等。</div>';
+                    currentConversationId = null;
+
+                    // 可选：清除本地存储
+                    localStorage.removeItem('conversationHistory');
+                } else {
+                    alert('删除失败: ' + data.message);
+                }
+            } catch (error) {
+                console.error('删除所有对话记录失败:', error);
+                alert('删除失败: ' + error.message);
+            } finally {
+                deleteBtn.textContent = originalText;
+                deleteBtn.disabled = false;
+            }
+        }
+
+        async function loadHistory() {
+            try {
+                const response = await fetch('/api/history/load');
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    // 转换历史记录格式（为了兼容性）
+                    conversationHistory = (data.history || []).map(conv => {
+                        // 如果是旧格式，转换为新格式
+                        if (conv.user_message && conv.bot_response) {
+                            return {
+                                id: conv.id || `conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                                user_message: conv.user_message,
+                                bot_response: conv.bot_response,
+                                timestamp: conv.timestamp || new Date(conv.saved_at).toLocaleTimeString() || new Date().toLocaleTimeString(),
+                                display_text: conv.display_text || conv.user_message.substring(0, 30) + (conv.user_message.length > 30 ? '...' : '')
+                            };
+                        } else {
+                            // 旧格式：单条消息
+                            return {
+                                id: conv.id || `conv_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                                user_message: conv.text || '',
+                                bot_response: '此记录为旧格式，无法显示完整对话',
+                                timestamp: conv.timestamp || new Date(conv.saved_at).toLocaleTimeString() || new Date().toLocaleTimeString(),
+                                display_text: (conv.text || '').substring(0, 30) + ((conv.text || '').length > 30 ? '...' : '')
+                            };
+                        }
+                    });
+
+                    updateHistoryDisplay();
+                }
+            } catch (error) {
+                console.error('加载历史记录失败:', error);
+                // 如果后端接口不可用，尝试从localStorage加载
+                const savedHistory = localStorage.getItem('conversationHistory');
+                if (savedHistory) {
+                    conversationHistory = JSON.parse(savedHistory);
+                    updateHistoryDisplay();
+                }
+            }
+        }
+
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'block';
+            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'none';
+        }
+
+        async function processMessage(message, messageId) {
+            isProcessing = true;
+            document.getElementById('sendBtn').disabled = true;
+            showTypingIndicator();
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        conversation_id: currentConversationId // 如果是重新生成，传递当前对话ID
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    const botMessageId = 'response_' + messageId;
+                    addMessage('bot', data.response, botMessageId);
+
+                    // 保存完整对话到历史记录
+                    addToHistory(message, data.response, data.conversation_id);
+
+                    // 重置当前对话ID（新对话）
+                    currentConversationId = null;
+                } else {
+                    addMessage('bot', `错误: ${data.message}`, 'response_' + messageId);
+                }
+            } catch (error) {
+                addMessage('bot', `网络错误: ${error.message}`, 'response_' + messageId);
+            } finally {
+                hideTypingIndicator();
+                isProcessing = false;
+                document.getElementById('sendBtn').disabled = false;
+            }
+        }
+
+        async function startCrawler() {
+            try {
+                const response = await fetch('/api/crawler/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const data = await response.json();
+                alert(data.message);
+
+                if (data.status === 'success') {
+                    updateCrawlerUI(true);
+                }
+            } catch (error) {
+                alert(`启动爬虫失败: ${error.message}`);
+            }
+        }
+
+        async function stopCrawler() {
+            try {
+                const response = await fetch('/api/crawler/stop', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const data = await response.json();
+                alert(data.message);
+
+                if (data.status === 'success') {
+                    updateCrawlerUI(false);
+                }
+            } catch (error) {
+                alert(`停止爬虫失败: ${error.message}`);
+            }
+        }
+
+        async function checkCrawlerStatus() {
+            try {
+                const response = await fetch('/api/crawler/status');
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    updateCrawlerUI(data.running);
+                }
+            } catch (error) {
+                console.error('检查爬虫状态失败:', error);
+            }
+        }
+
+        function updateCrawlerUI(isRunning) {
+            const statusIndicator = document.getElementById('crawlerStatus');
+            const statusText = document.getElementById('crawlerStatusText');
+            const startBtn = document.getElementById('startCrawlerBtn');
+            const stopBtn = document.getElementById('stopCrawlerBtn');
+
+            if (isRunning) {
+                statusIndicator.className = 'status-indicator status-running';
+                statusText.textContent = '状态: 运行中';
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            } else {
+                statusIndicator.className = 'status-indicator status-stopped';
+                statusText.textContent = '状态: 未运行';
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        }
+
+        // 推送任务相关功能
+        function showPushTaskModal() {
+            document.getElementById('pushTaskModal').style.display = 'flex';
+        }
+
+        function hidePushTaskModal() {
+            document.getElementById('pushTaskModal').style.display = 'none';
+        }
+
+        async function createPushTask() {
+            const userPrompt = document.getElementById('pushPrompt').value.trim();
+            const pushTime = document.getElementById('pushTime').value;
+
+            if (!userPrompt) {
+                alert('请输入推送类别');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/push_tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_prompt: userPrompt,
+                        push_time: pushTime
+                    })
+                });
+
+                const data = await response.json();
+                alert(data.message);
+
+                if (data.status === 'success') {
+                    hidePushTaskModal();
+                    loadPushTasks();
+                    // 清空输入框
+                    document.getElementById('pushPrompt').value = '';
+                }
+            } catch (error) {
+                alert(`创建推送任务失败: ${error.message}`);
+            }
+        }
+
+        async function loadPushTasks() {
+            try {
+                const response = await fetch('/api/push_tasks');
+                const data = await response.json();
+
+                const tasksList = document.getElementById('pushTasksList');
+                tasksList.innerHTML = '';
+
+                if (data.status === 'success' && data.tasks.length > 0) {
+                    data.tasks.forEach(task => {
+                        const taskDiv = document.createElement('div');
+                        taskDiv.className = 'push-task-item';
+
+                        taskDiv.innerHTML = `
+                            <div style="margin-bottom: 3px;"><strong>${task.user_prompt}</strong></div>
+                            <div style="font-size: 0.7em; color: #666;">时间: ${task.push_time}</div>
+                            <button class="push-task-delete" onclick="deletePushTask('${task.task_id}')">
+                                删除
+                            </button>
+                        `;
+
+                        tasksList.appendChild(taskDiv);
+                    });
+                } else {
+                    tasksList.innerHTML = '<div class="empty-state">暂无推送任务</div>';
+                }
+            } catch (error) {
+                console.error('加载推送任务失败:', error);
+                tasksList.innerHTML = '<div class="empty-state">加载失败</div>';
+            }
+        }
+
+        async function deletePushTask(taskId) {
+            if (!confirm('确定要删除这个推送任务吗？')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/push_tasks/${taskId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                alert(data.message);
+
+                if (data.status === 'success') {
+                    loadPushTasks();
+                }
+            } catch (error) {
+                alert(`删除推送任务失败: ${error.message}`);
+            }
+        }
+
+        // 每30秒检查一次爬虫状态
+        setInterval(checkCrawlerStatus, 30000);
+        // 每5分钟检查一次推送任务
+        setInterval(loadPushTasks, 300000);
+    </script>
+</body>
+</html>

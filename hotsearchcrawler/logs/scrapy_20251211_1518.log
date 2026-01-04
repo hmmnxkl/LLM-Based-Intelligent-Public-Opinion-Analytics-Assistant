@@ -1,0 +1,88 @@
+2025-12-11 15:18:14 [scrapy.utils.log] INFO: Scrapy 2.11.0 started (bot: hotsearchcrawler)
+2025-12-11 15:18:14 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.3, cssselect 1.3.0, parsel 1.10.0, w3lib 2.3.1, Twisted 22.10.0, Python 3.12.11 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 12:58:53) [MSC v.1929 64 bit (AMD64)], pyOpenSSL 25.1.0 (OpenSSL 3.5.1 1 Jul 2025), cryptography 45.0.5, Platform Windows-11-10.0.26200-SP0
+2025-12-11 15:18:15 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-12-11 15:18:15 [py.warnings] WARNING: D:\llx-env\Lib\site-packages\scrapy\utils\request.py:254: ScrapyDeprecationWarning: '2.6' is a deprecated value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting.
+
+It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
+
+See the documentation of the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting for information on how to handle this deprecation.
+  return cls(crawler)
+
+2025-12-11 15:18:15 [scrapy.extensions.telnet] INFO: Telnet Password: 3d22f3ee59e40b61
+2025-12-11 15:18:15 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2025-12-11 15:18:15 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10,
+ 'AUTOTHROTTLE_START_DELAY': 1,
+ 'BOT_NAME': 'hotsearchcrawler',
+ 'CONCURRENT_REQUESTS': 4,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'DOWNLOAD_DELAY': 2,
+ 'LOG_FILE': 'logs\\scrapy_20251211_1518.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'hotsearchcrawler.spiders',
+ 'RETRY_TIMES': 3,
+ 'SPIDER_MODULES': ['hotsearchcrawler.spiders']}
+2025-12-11 15:18:16 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.NetEaseCookieMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.ErrorHandleMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-12-11 15:18:16 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-12-11 15:18:16 [scrapy.middleware] INFO: Enabled item pipelines:
+['hotsearchcrawler.pipelines.MySQLPipeline']
+2025-12-11 15:18:16 [scrapy.core.engine] INFO: Spider opened
+2025-12-11 15:18:16 [hotsearchcrawler.pipelines] INFO: ✅ 数据库连接成功
+2025-12-11 15:18:16 [hotsearchcrawler.pipelines] INFO: ✅ 表 hot_articles 已创建或已存在
+2025-12-11 15:18:16 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-12-11 15:18:16 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-12-11 15:18:16 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 1 名热词: 华为重夺中国手机市场份额第一
+2025-12-11 15:18:17 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E5%8D%8E%E4%B8%BA%E9%87%8D%E5%A4%BA%E4%B8%AD%E5%9B%BD%E6%89%8B%E6%9C%BA%E5%B8%82%E5%9C%BA%E4%BB%BD%E9%A2%9D%E7%AC%AC%E4%B8%80
+2025-12-11 15:18:19 [wangyi_hotsearch_hot] INFO: 找到第一个新闻卡片
+2025-12-11 15:18:19 [wangyi_hotsearch_hot] INFO: 直接获取URL失败，尝试点击卡片
+2025-12-11 15:18:25 [wangyi_hotsearch_hot] INFO: ✅ 成功获取详情页URL: https://m.163.com/dy/article/KGGM6JDK05118A8G.html
+2025-12-11 15:18:25 [wangyi_hotsearch_hot] ERROR: ❌ 处理热榜数据时发生意外错误: 'HotItem does not support field: url_type'
+2025-12-11 15:18:25 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-12-11 15:18:25 [hotsearchcrawler.pipelines] INFO: 🔌 数据库连接已关闭
+2025-12-11 15:18:27 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 400,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 2946,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 11.692861,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 12, 11, 7, 18, 27, 771685, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 8292,
+ 'httpcompression/response_count': 1,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 18,
+ 'log_count/WARNING': 1,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2025, 12, 11, 7, 18, 16, 78824, tzinfo=datetime.timezone.utc)}
+2025-12-11 15:18:27 [scrapy.core.engine] INFO: Spider closed (finished)

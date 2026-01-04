@@ -1,0 +1,160 @@
+2025-12-11 14:52:49 [scrapy.utils.log] INFO: Scrapy 2.11.0 started (bot: hotsearchcrawler)
+2025-12-11 14:52:49 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.3, cssselect 1.3.0, parsel 1.10.0, w3lib 2.3.1, Twisted 22.10.0, Python 3.12.11 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 12:58:53) [MSC v.1929 64 bit (AMD64)], pyOpenSSL 25.1.0 (OpenSSL 3.5.1 1 Jul 2025), cryptography 45.0.5, Platform Windows-11-10.0.26200-SP0
+2025-12-11 14:52:51 [scrapy.addons] INFO: Enabled addons:
+[]
+2025-12-11 14:52:51 [py.warnings] WARNING: D:\llx-env\Lib\site-packages\scrapy\utils\request.py:254: ScrapyDeprecationWarning: '2.6' is a deprecated value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting.
+
+It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
+
+See the documentation of the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting for information on how to handle this deprecation.
+  return cls(crawler)
+
+2025-12-11 14:52:51 [scrapy.extensions.telnet] INFO: Telnet Password: 8eac0ae958d82ebc
+2025-12-11 14:52:51 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.throttle.AutoThrottle']
+2025-12-11 14:52:51 [scrapy.crawler] INFO: Overridden settings:
+{'AUTOTHROTTLE_ENABLED': True,
+ 'AUTOTHROTTLE_MAX_DELAY': 10,
+ 'AUTOTHROTTLE_START_DELAY': 1,
+ 'BOT_NAME': 'hotsearchcrawler',
+ 'CONCURRENT_REQUESTS': 4,
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
+ 'DOWNLOAD_DELAY': 2,
+ 'LOG_FILE': 'logs\\scrapy_20251211_1452.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'hotsearchcrawler.spiders',
+ 'SPIDER_MODULES': ['hotsearchcrawler.spiders']}
+2025-12-11 14:52:51 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.RotateUserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.NetEaseCookieMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'hotsearchcrawler.wangyimiddlewares.ErrorHandleMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2025-12-11 14:52:51 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2025-12-11 14:52:51 [scrapy.middleware] INFO: Enabled item pipelines:
+['hotsearchcrawler.pipelines.MySQLPipeline']
+2025-12-11 14:52:51 [scrapy.core.engine] INFO: Spider opened
+2025-12-11 14:52:51 [hotsearchcrawler.pipelines] INFO: ✅ 数据库连接成功
+2025-12-11 14:52:51 [hotsearchcrawler.pipelines] INFO: ✅ 表 hot_articles 已创建或已存在
+2025-12-11 14:52:51 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2025-12-11 14:52:51 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2025-12-11 14:52:52 [wangyi_hotsearch_hot] INFO: 🔍 正在处理第 1 名热词: 中兴通讯：正与美国司法部进行沟通
+2025-12-11 14:52:53 [wangyi_hotsearch_hot] INFO: 加载搜索页: https://m.163.com/search?keyword=%E4%B8%AD%E5%85%B4%E9%80%9A%E8%AE%AF%EF%BC%9A%E6%AD%A3%E4%B8%8E%E7%BE%8E%E5%9B%BD%E5%8F%B8%E6%B3%95%E9%83%A8%E8%BF%9B%E8%A1%8C%E6%B2%9F%E9%80%9A
+2025-12-11 14:52:56 [wangyi_hotsearch_hot] ERROR: ❌ 获取热词 '中兴通讯：正与美国司法部进行沟通' 的第一个新闻详情页失败: Message: element click intercepted: Element <div class="newsCard simpleImageCard">...</div> is not clickable at point (932, 33). Other element would receive the click: <form autocomplete="off" class="searchBar-form">...</form>
+  (Session info: MicrosoftEdge=138.0.3351.83); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#elementclickinterceptedexception
+Stacktrace:
+	GetHandleVerifier [0x0x7ff76a348c65+23461]
+	(No symbol) [0x0x7ff76a29cd50]
+	GetHandleVerifier [0x0x7ff76a5c0b98+2611928]
+	(No symbol) [0x0x7ff76a0bfd35]
+	(No symbol) [0x0x7ff76a0bdce3]
+	(No symbol) [0x0x7ff76a0bb75d]
+	(No symbol) [0x0x7ff76a0ba928]
+	(No symbol) [0x0x7ff76a0afbfe]
+	(No symbol) [0x0x7ff76a0da6ba]
+	(No symbol) [0x0x7ff76a0af58d]
+	(No symbol) [0x0x7ff76a0af44d]
+	(No symbol) [0x0x7ff76a0da980]
+	(No symbol) [0x0x7ff76a0af58d]
+	(No symbol) [0x0x7ff76a0f754f]
+	(No symbol) [0x0x7ff76a0da423]
+	(No symbol) [0x0x7ff76a0aea86]
+	(No symbol) [0x0x7ff76a0add11]
+	(No symbol) [0x0x7ff76a0ae8b3]
+	(No symbol) [0x0x7ff76a1ae6fd]
+	(No symbol) [0x0x7ff76a1bba88]
+	GetHandleVerifier [0x0x7ff76a428aab+940523]
+	GetHandleVerifier [0x0x7ff76a431801+976705]
+	(No symbol) [0x0x7ff76a2aa941]
+	(No symbol) [0x0x7ff76a2a3324]
+	(No symbol) [0x0x7ff76a2a3473]
+	(No symbol) [0x0x7ff76a294f16]
+	BaseThreadInitThunk [0x0x7ff96f95e8d7+23]
+	RtlUserThreadStart [0x0x7ff97024c53c+44]
+
+2025-12-11 14:52:56 [wangyi_hotsearch_hot] WARNING: ⚠️ 使用搜索页URL作为备用: https://m.163.com/search?keyword=%E4%B8%AD%E5%85%B4%E9%80%9A%E8%AE%AF%EF%BC%9A%E6%AD%A3%E4%B8%8E%E7%BE%8E%E5%9B%BD%E5%8F%B8%E6%B3%95%E9%83%A8%E8%BF%9B%E8%A1%8C%E6%B2%9F%E9%80%9A
+2025-12-11 14:52:56 [scrapy.core.scraper] ERROR: Spider error processing <GET https://gw.m.163.com/search/api/v2/hot-search> (referer: https://news.163.com/)
+Traceback (most recent call last):
+  File "D:\llx-env\Lib\site-packages\scrapy\utils\defer.py", line 279, in iter_errback
+    yield next(it)
+          ^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\utils\python.py", line 350, in __next__
+    return next(self.data)
+           ^^^^^^^^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\utils\python.py", line 350, in __next__
+    return next(self.data)
+           ^^^^^^^^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    for r in iterable:
+             ^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 28, in <genexpr>
+    return (r for r in result or () if self._filter(r, spider))
+                       ^^^^^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    for r in iterable:
+             ^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\spidermiddlewares\referer.py", line 352, in <genexpr>
+    return (self._set_referer(r, response) for r in result or ())
+                                                    ^^^^^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    for r in iterable:
+             ^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 27, in <genexpr>
+    return (r for r in result or () if self._filter(r, spider))
+                       ^^^^^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    for r in iterable:
+             ^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\spidermiddlewares\depth.py", line 31, in <genexpr>
+    return (r for r in result or () if self._filter(r, response, spider))
+                       ^^^^^^^^^^^^
+  File "D:\llx-env\Lib\site-packages\scrapy\core\spidermw.py", line 106, in process_sync
+    for r in iterable:
+             ^^^^^^^^
+  File "C:\Users\hmmnx\Desktop\hotsearchcrawler1\hotsearchcrawler\spiders\wangyi_hotsearch_spider.py", line 145, in parse
+    item[
+  File "D:\llx-env\Lib\site-packages\scrapy\item.py", line 85, in __setitem__
+    raise KeyError(f"{self.__class__.__name__} does not support field: {key}")
+KeyError: 'HotItem does not support field: url_type'
+2025-12-11 14:52:56 [scrapy.core.engine] INFO: Closing spider (finished)
+2025-12-11 14:52:56 [hotsearchcrawler.pipelines] INFO: 🔌 数据库连接已关闭
+2025-12-11 14:52:58 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 303,
+ 'downloader/request_count': 1,
+ 'downloader/request_method_count/GET': 1,
+ 'downloader/response_bytes': 3151,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'elapsed_time_seconds': 7.100685,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2025, 12, 11, 6, 52, 58, 715419, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 8799,
+ 'httpcompression/response_count': 1,
+ 'log_count/ERROR': 2,
+ 'log_count/INFO': 15,
+ 'log_count/WARNING': 2,
+ 'response_received_count': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'spider_exceptions/KeyError': 1,
+ 'start_time': datetime.datetime(2025, 12, 11, 6, 52, 51, 614734, tzinfo=datetime.timezone.utc)}
+2025-12-11 14:52:58 [scrapy.core.engine] INFO: Spider closed (finished)
