@@ -11,9 +11,7 @@ class BaiduHotSpider(BaseHotSpider):
             'hotsearchcrawler.fakemiddlewares.SeleniumMiddleware': 500,
         }
     }
-
     start_url = 'https://top.baidu.com/board?tab=realtime'
-
     topics_xpath = '//div[@style="margin-bottom:20px"]//a[@class="title_dIF3B "]/@href'
     topic_title_xpath = '//div[@class="c-single-text-ellipsis"]'
     article_author_xpath = '(//div[@class="cosc-source"]//span)[1]'
