@@ -47,7 +47,6 @@ class BilibiliSpider(scrapy.Spider):
                 hot_item['author'] = 'bilibili博主'
                 hot_item['url'] = f'https://search.bilibili.com/all?keyword={keyword}&from_source=webtop_search&spm_id_from=333.934&search_source=4'
                 hot_item['crawl_time'] = crawl_time
-
                 hot_item = hot_item.process_item()
 
                 yield hot_item
