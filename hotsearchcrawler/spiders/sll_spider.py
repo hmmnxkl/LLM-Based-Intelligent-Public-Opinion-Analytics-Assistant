@@ -32,6 +32,7 @@ class SllHotSpider(BaseHotSpider):
             callback=self.parse_ranking
         )
 
+    
     def parse_ranking(self, response):
         all_topics = response.meta.get('all_topics', [])
         all_titles = response.meta.get('all_titles', [])
