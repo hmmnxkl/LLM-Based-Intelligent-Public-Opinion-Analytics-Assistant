@@ -5,7 +5,6 @@ import time
 import re
 from ..items import HotItem
 
-
 class BaseHotSpider(scrapy.Spider):
     platform_id = None
     hot_list_url = None
