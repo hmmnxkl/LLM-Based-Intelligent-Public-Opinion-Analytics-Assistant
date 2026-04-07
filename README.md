@@ -51,7 +51,7 @@
 
 **标题**：GPT-6遭提前曝光, 2M超长上下文来了
 
-**URL**：[点击查看](https://search.bilibili.com/all?vt=33771028&keyword=%E6%9B%9DGPT6%E6%9C%AC%E6%9C%88%E5%8F%91%E5%B8%83&from_source=webtop_search&spm_id_from=333.934&search_source=4)
+**URL**：[🎬 点击观看视频](https://www.bilibili.com/video/BV13pSoBBEvX/?spm_id_from=333.337.search-card.all.click)
 
 **摘要**：社区流传信息显示，下一代GPT模型或支持200万token上下文窗口，将大幅提升长文档理解、多轮对话连贯性及代码项目级分析能力。尽管官方尚未确认，但该预期已推动开发者提前规划长上下文应用场景。
 
@@ -59,7 +59,7 @@
 
 **标题**：内存太贵？厂商将复产DDR3主板
 
-**URL**：[点击查看](https://search.bilibili.com/all?vt=33771028&keyword=%E6%9B%9D%E5%8E%82%E5%95%86%E5%B0%86%E5%A4%8D%E4%BA%A7DDR3%E4%B8%BB%E6%9D%BF&from_source=webtop_search&spm_id_from=333.934&search_source=4)
+**URL**：[🎬 点击观看视频](https://www.bilibili.com/video/BV1BFDwBZEJq/?spm_id_from=333.337.search-card.all.click)
 
 **摘要**：受全球存储芯片价格波动影响，部分嵌入式与边缘AI设备厂商重新评估硬件选型。DDR3平台凭借成熟工艺与成本优势，在推理端低功耗场景中重现需求，反映AI硬件生态的多元化适配趋势。
 
